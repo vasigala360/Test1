@@ -1,0 +1,135 @@
+<apex:component allowdml="true"> 
+    <script src="{!URLFOR($Resource.G2A4SF__jQueryFiles, 'js/jquery-1.6.2.min.js')}"/>
+    <script src="{!URLFOR($Resource.G2A4SF__jQueryFiles, 'js/jquery-ui-1.8.16.custom.min.js')}"/>
+    <script src="{!URLFOR($Resource.G2A4SF__jQueryClipboard, 'jquery.clipboard-2.0.1')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.G2A4SF__jQueryFiles, 'css/ui-lightness/jquery-ui-1.8.7.custom.css')}"/>
+      <script src="{!URLFOR($Resource.zeroclipboard,'ZeroClipboard.js')}"/>
+	
+	<script type="text/javascript">
+	
+		var clip = null;
+		jQuery.noConflict();
+		jQuery(document).ready(function() {
+			ZeroClipboard.setMoviePath('http://davidwalsh.name/dw-content/ZeroClipboard.swf');
+      		init();
+			//set path
+			
+		});  
+		
+		function init() {
+
+			clip = new ZeroClipboard.Client();  
+			clip.setHandCursor( true );
+			//alert('clip='+clip);
+			clip.addEventListener('load', my_load);
+			//alert('my_load added');
+			clip.addEventListener('mouseOver', my_mouse_over);
+			//alert('my_mouse_over added');
+			clip.addEventListener('complete', my_complete);
+			//alert('my_complete added');
+			//clip.glue(document.getElementById('{!$Component.label_click}'));
+			clip.glue(document.getElementById('d_clip_button'));
+			
+			//alert('here');
+		}
+		
+		function my_load(client) {
+			debugstr("Flash movie loaded and ready.");
+		}
+		
+		function my_mouse_over(client) {
+			// we can cheat a little here -- update the text on mouse over
+			clip.setText( document.getElementById('{!$Component.conId}').value );
+			//alert('after mouseover');
+			
+		}
+		
+		function my_complete(client, text) {
+			debugstr("Copied text to clipboard: " + text );
+		}
+		
+		function debugstr(msg) {
+			var p = document.createElement('p');
+			p.innerHTML = msg;
+		}
+		
+	</script>
+	
+
+
+	
+<apex:attribute name="that" description="G2A4SF.G2AToCaseCitrixCase" type="G2A4SF.G2AToCaseCitrixCase" required="true"/>
+
+<div class="pageContent"></div>
+
+<div class="keyVisual"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/keyVisual_codeDistribution.jpg')}" width="206" height="173" /></div>
+
+<div class="contentArea">
+
+  <h1>{!$Label.G2ACodeDistribuition_Heading}</h1>
+  <p>{!$Label.G2ACodeDistribuition_Paragraph}</p>
+
+  <div>
+  	<div class="contentSectionLabel">
+  	{!$Label.G2ACodeDistribuition_ContentSectionLabel}
+    </div>
+  
+   	<div class="contentSectionValue">
+ 	 <strong>{!that.sessionCode}</strong>
+   	</div>
+  </div>
+
+ <br /><br />
+
+
+  <div>
+  	<div class="contentSectionLabel">
+  	{!$Label.G2ACodeDistribuition_ContentSectionLabel2}</div>
+   	<div class="contentSectionValue">
+   	<apex:commandlink action="{!that.emailG2AUsingTemplate}" immediate="true"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_sendEmail.jpg')}" alt="Send Email" name="sendEmail" width="108" height="29" border="0" align="top" id="sendEmail" onmouseover="MM_swapImage('sendEmail','','{!URLFOR($Resource.G2AStylesAndImages,'images/btn_sendEmail_over.jpg')}',1)" onmouseout="MM_swapImgRestore()" /></apex:commandlink>&nbsp;&nbsp;&nbsp;Recipient: {!that.contactEmailAddress}
+    </div>
+</div>
+   
+    <br /><br /> <br/>
+   
+     <div>
+  	<div class="contentSectionLabel">
+  	{!$Label.G2ACodeDistribuition_ContentSectionLabel3}</div>
+  		  
+  		<apex:inputhidden id="conId" value="{!that.connectionURL}" />  
+  		
+   	<div class="contentSectionValue"><apex:outputtext id="connURLText" value="{!that.connectionURL}" /><br /> </div>
+   	
+   	<br/>
+   	<div id="d_clip_button" class="contentSectionValue"><u> <a>{!$Label.G2ACodeDistribuition_ContentSectionValue}</a> </u></div>
+ 	  
+   </div>
+   
+   <br /><br /><br />
+   
+   <div> <hr color="#bbbbbb"  size="1"/>
+	</div>
+    
+    
+   <div>
+  	<div class="contentSectionLabel"></div>
+  	<br/>
+   	<div class="contentSectionValue"><u><a><apex:outputlabel value="{!$Label.g2a4sf__G2ACodeDistribuition_CloseWindow}" onclick="window.close();"/></a></u></div>
+   </div> 
+   
+
+   
+   
+   
+</div>
+ 
+
+<div class="footerText">
+{!$Label.G2AToCase_FooterText} 
+</div>
+
+<div class="footerLogo">
+<a href="http://www.citrixonline.com" target="_blank"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/footerLogo.jpg')}" alt="Citrix Online logo" width="128" height="33" border="0" /></a>
+</div>
+
+</apex:component>

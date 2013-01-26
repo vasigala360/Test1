@@ -1,0 +1,34 @@
+<apex:component allowdml="true">
+
+<apex:attribute name="that" description="G2A4SF.G2AToCaseCitrixCase" type="G2A4SF.G2AToCaseCitrixCase" required="true"/>
+
+<div class="pageContent"></div>
+
+<div class="keyVisual"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/keyVisual_portalSelection.jpg')}" width="206" height="173" /></div>
+
+<div class="contentArea">
+
+  <h1>{!$Label.G2APortalSelection_Header}</h1>
+  <p>{!$Label.G2APortalSelection_Paragraph}&nbsp;</p>
+  <p class="fieldlabel">Portal
+  
+  <form id="form1" name="form1" method="post" action="">
+    <label>
+      <apex:selectList value="{!that.selectedPortal}" size="1">
+                    <apex:selectOptions value="{!that.portals}" />
+      </apex:selectList>
+    </label>
+  </form><br />
+  </p>
+  <p><apex:commandlink action="{!that.finishLogin}"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_continue.jpg')}" alt="Continue" name="btn_continue" width="112" height="29" border="0" id="btn_continue" onmouseover="MM_swapImage('btn_continue','','{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_continue_over.jpg')}',1)" onmouseout="MM_swapImgRestore()" /></apex:commandlink></p>
+</div>
+
+<div class="footerText">
+{!$Label.G2AToCase_FooterText} 
+</div>
+
+<div class="footerLogo">
+<a href="http://www.citrixonline.com" target="_blank"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/footerLogo.jpg')}" alt="Citrix Online logo" width="128" height="33" border="0" /></a>
+</div>
+
+</apex:component>

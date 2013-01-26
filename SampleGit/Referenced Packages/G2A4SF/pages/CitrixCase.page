@@ -1,0 +1,115 @@
+<apex:page standardcontroller="case" extensions="G2A4SF.G2AToCaseCitrixCase" sidebar="false" showHeader="false" tabStyle="Case" action="{!attemptLogin}">
+	
+	
+	<head>
+		<title>GoToAssist - Remote Support Made Easy©</title>
+		<apex:stylesheet value="{!URLFOR($Resource.G2A4SF__G2AStylesAndImages, 'styles.css')}"/> 	 
+		
+		<script type="text/javascript">
+			function MM_preloadImages() { //v3.0
+			  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+			    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+			    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+			}
+			function MM_swapImgRestore() { //v3.0
+			  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+			}
+			
+			function MM_findObj(n, d) { //v4.01
+			  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+			    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+			  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+			  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+			  if(!x && d.getElementById) x=d.getElementById(n); return x;
+			}
+			
+			function MM_swapImage() { //v3.0
+			  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+			   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+			}
+			
+			
+		</script>
+	</head>
+	
+	<body onload="MM_preloadImages('{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_continue_over.jpg')}','{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_sendEmail_over.jpg')}');">
+	
+	<apex:form rendered="{!errorFlag}">
+		<apex:outputpanel rendered="{!!errorFlag2}">
+			<c:G2AToCaseLoginHelpAlertError that="{!G2AToCaseCitrixCase}"/> 
+		</apex:outputpanel>
+		<apex:outputpanel rendered="{!errorFlag2}">
+			<c:G2AToCaseGeneralError that="{!G2AToCaseCitrixCase}"/> 
+		</apex:outputpanel>
+	</apex:form>
+	
+	
+	<apex:outputpanel rendered="{!emailSentFlag} && {!!ErrorFlag}" >			
+		<c:G2AToCaseEmailSendconfirmation />
+	</apex:outputpanel>
+
+<apex:form rendered="{!!Errorflag}">
+ <!--<apex:pageBlock title="{!pageTitle}" mode="edit" rendered="{!AND(!loginResult,!gotPortalIds)}">
+   
+     <apex:pageBlockButtons > --> 
+	    
+	    <apex:outputPanel rendered="{!AND(!loginResult,!gotPortalIds)}">
+			<!-- <apex:commandButton value="{!$Label.G2A_CitrixCase_Login}" action="{!submit}" />			
+			<apex:commandButton value="{!$Label.G2A_CitrixCase_Cancel}" onClick="window.close();" immediate="true" /> -->
+			<c:G2AToCaseSalesforceLogin that="{!G2AToCaseCitrixCase}" />
+		</apex:outputPanel>
+		<apex:outputPanel rendered="{!AND(!loginResult,gotPortalIds)}">
+			<!-- <apex:commandButton value="{!$Label.G2A_CitrixCase_Submit}" action="{!finishLogin}" />				
+			<apex:commandButton value="{!$Label.G2A_CitrixCase_Cancel}" onClick="window.close();" immediate="true" /> -->
+			<c:PortalSelection that="{!G2AToCaseCitrixCase}"/>
+		</apex:outputPanel>
+ 	<!-- </apex:pageBlockButtons> 
+	</apex:pageBlock>-->
+	
+	<apex:outputPanel rendered="{!AND(loginResult, !emailResult)}">
+	    	<!-- <apex:commandButton value="{!$Label.G2A_CitrixCase_EmailInfo}" action="{!emailG2AUsingTemplate}" immediate="true" />
+		    <apex:commandButton value="{!$Label.G2A_CitrixCase_Close}" onClick="window.close();" immediate="true" /> -->
+		   <c:G2AToCaseCodeDistribution that="{!G2AToCaseCitrixCase}"/>  
+	</apex:outputPanel>
+	
+	<apex:outputPanel rendered="{!emailResult}">
+	    	<c:G2AToCaseEmailSendconfirmation />
+	    	<!-- <apex:commandButton value="{!$Label.G2A_CitrixCase_Close}" onClick="window.close();" immediate="true" /> --->
+	</apex:outputPanel>
+	
+	
+	
+	<apex:outputPanel rendered="{!loginResult}">
+	<table>
+		<!-- <apex:outputText rendered="{!!gotPortalIds}">
+		<tr>
+			<td>{!$Label.G2A_CitrixCase_Username}</td>
+			<td><apex:inputText value="{!g2a_username}"/></td>
+		</tr>
+		<tr>
+			<td>{!$Label.G2A_CitrixCase_Password}</td>
+			<td><apex:inputSecret value="{!g2a_password}" /></td>
+		</tr>
+		</apex:outputText> 
+		<apex:outputText rendered="{!gotPortalIds}">
+		<c:G2AToCasePortalSelection that="{!G2AToCaseCitrixCase}"/>
+		 <tr>
+			<td>{!$Label.G2A_CitrixCase_Portal}</td>
+			<td>
+				<apex:selectList value="{!selectedPortal}" size="1">
+           			<apex:selectOptions value="{!portals}" />
+           		</apex:selectList>
+           	</td>
+		</tr> 
+		</apex:outputText>-->
+	</table>
+      
+      <apex:inputHidden value="{!case.Contact.Email}"/>
+      <apex:inputHidden value="{!case.Contact.FirstName}"/>
+      <apex:inputHidden value="{!case.Contact.LastName}"/>
+      <apex:inputHidden value="{!case.CaseNumber}"/>
+   </apex:outputPanel>
+ 
+ </apex:form>
+ </body> 
+</apex:page>

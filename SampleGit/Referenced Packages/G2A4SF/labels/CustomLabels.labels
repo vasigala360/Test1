@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CitrixCase_EmailSubject</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CitrixCase_EmailSubject</shortDescription>
+        <value>Citrix GoToAssist Phonemode Error</value>
+    </labels>
+    <labels>
+        <fullName>CitrixG2A_GoToAssistParsingError</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Citrix GoToAssist Parsing Error</shortDescription>
+        <value>DateTime Parse Fault error in G2A Managed package &lt;br/&gt;
+Please Contact Citrix for further details &lt;br /&gt;Technical Details:&lt;br /&gt; Class: G2AToCaseCitrixUtils &lt;br /&gt; Method: evalDateTime()  Exception Line:</value>
+    </labels>
+    <labels>
+        <fullName>DmlExceptionSubject</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DmlExceptionSubject</shortDescription>
+        <value>DML Exception</value>
+    </labels>
+    <labels>
+        <fullName>EmailSubject</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EmailSubject</shortDescription>
+        <value>Error Encountered:</value>
+    </labels>
+    <labels>
+        <fullName>EncodingStyle</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EncodingStyle</shortDescription>
+        <value>encodingStyle</value>
+    </labels>
+    <labels>
+        <fullName>Envelope</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Envelope</shortDescription>
+        <value>Envelope</value>
+    </labels>
+    <labels>
+        <fullName>G2ACaseEmailSent_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACaseEmailSent_Header</shortDescription>
+        <value>GoToAssist Session Code was Sent</value>
+    </labels>
+    <labels>
+        <fullName>G2ACaseEmailSent_Paragraph1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACaseEmailSent_Paragraph1</shortDescription>
+        <value>The session code was sent and your session will begin shortly.</value>
+    </labels>
+    <labels>
+        <fullName>G2ACaseEmailSent_Paragraph2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACaseEmailSent_Paragraph2</shortDescription>
+        <value>You may close this window.</value>
+    </labels>
+    <labels>
+        <fullName>G2ACodeDistribuition_CloseWindow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACodeDistribuition_CloseWindow</shortDescription>
+        <value>Close Window</value>
+    </labels>
+    <labels>
+        <fullName>G2ACodeDistribuition_ContentSectionLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACodeDistribuition_ContentSectionLabel</shortDescription>
+        <value>Session Code:</value>
+    </labels>
+    <labels>
+        <fullName>G2ACodeDistribuition_ContentSectionLabel2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACodeDistribuition_ContentSectionLabel2</shortDescription>
+        <value>Email Code:</value>
+    </labels>
+    <labels>
+        <fullName>G2ACodeDistribuition_ContentSectionLabel3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACodeDistribuition_ContentSectionLabel3</shortDescription>
+        <value>Session Link:</value>
+    </labels>
+    <labels>
+        <fullName>G2ACodeDistribuition_ContentSectionValue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACodeDistribuition_ContentSectionValue</shortDescription>
+        <value>Copy Link</value>
+    </labels>
+    <labels>
+        <fullName>G2ACodeDistribuition_Heading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACodeDistribuition_Heading</shortDescription>
+        <value>GoToAssist Code Management</value>
+    </labels>
+    <labels>
+        <fullName>G2ACodeDistribuition_Paragraph</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ACodeDistribuition_Paragraph</shortDescription>
+        <value>A support session was created. Please invite your customer to join the session by sending them an email or a link to the session.</value>
+    </labels>
+    <labels>
+        <fullName>G2AGeneralError_Heading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2AGeneralError_Heading</shortDescription>
+        <value>We Apologize, but an Error has Occurred</value>
+    </labels>
+    <labels>
+        <fullName>G2AGeneralError_Paragraph1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2AGeneralError_Paragraph1</shortDescription>
+        <value>Error Information:</value>
+    </labels>
+    <labels>
+        <fullName>G2AGeneralError_Paragraph2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2AGeneralError_Paragraph2</shortDescription>
+        <value>Please check your setup and try again.</value>
+    </labels>
+    <labels>
+        <fullName>G2AHelpAlertError_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2AHelpAlertError_Header</shortDescription>
+        <value>GoToAssist Login</value>
+    </labels>
+    <labels>
+        <fullName>G2AHelpAlertError_Paragraph1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2AHelpAlertError_Paragraph1</shortDescription>
+        <value>Please ensure that you&apos;ve logged in to GoToAssist and click Continue.</value>
+    </labels>
+    <labels>
+        <fullName>G2AHelpAlertError_Paragraph2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2AHelpAlertError_Paragraph2</shortDescription>
+        <value>We could not detect a connection - please log on to GoToAssist.</value>
+    </labels>
+    <labels>
+        <fullName>G2APortalSelection_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2APortalSelection_Header</shortDescription>
+        <value>Please select your GoToAssist Portal</value>
+    </labels>
+    <labels>
+        <fullName>G2APortalSelection_Paragraph</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2APortalSelection_Paragraph</shortDescription>
+        <value>Please select your portal from the drop-down menu and click Continue.</value>
+    </labels>
+    <labels>
+        <fullName>G2ASalesforceLogin_Header</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ASalesforceLogin_Header</shortDescription>
+        <value>Log In to Your GoToAssist Account</value>
+    </labels>
+    <labels>
+        <fullName>G2ASalesforceLogin_Paragraph1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ASalesforceLogin_Paragraph1</shortDescription>
+        <value>Please enter your HelpAlert username and password to begin using GoToAssist for SalesForce.</value>
+    </labels>
+    <labels>
+        <fullName>G2ASalesforceLogin_Paragraph2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ASalesforceLogin_Paragraph2</shortDescription>
+        <value>You&apos;ll need to run and log in to HelpAlert to generate phone codes.</value>
+    </labels>
+    <labels>
+        <fullName>G2ASalesforceLogin_Paragraph3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2ASalesforceLogin_Paragraph3</shortDescription>
+        <value>Your login or password seems to be incorrect. Please try again.</value>
+    </labels>
+    <labels>
+        <fullName>G2AToCase_FooterText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2AToCase_FooterText</shortDescription>
+        <value>© 1997-2011 Citrix Online, LLC. All Rights Reserved.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_Error</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_Error</shortDescription>
+        <value>An error occurred while trying to save the settings.  The administrator has been notified.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_Password</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_Password</shortDescription>
+        <value>G2A Connection Password:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_PasswordRequired</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_PasswordRequired</shortDescription>
+        <value>G2A Connection Password is required.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_Save</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_SaveException</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_SaveException</shortDescription>
+        <value>G2AToCaseAdministration Exception: Exception encountered saving username, password, and url</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_Success</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_Success</shortDescription>
+        <value>Settings successfully saved.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_Username</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_Username</shortDescription>
+        <value>G2A Connection Id:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Admin_UsernameRequired</fullName>
+        <categories>G2A,Administration</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_Admin_UsernameRequired</shortDescription>
+        <value>G2A Connection Username is required.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CalloutException</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Call Out Exception</shortDescription>
+        <value>Callout Fault in G2A Managed package &lt;br /&gt; Contact Citrix for further details &lt;br /&gt; Technical Details:&lt;br /&gt; Class: G2AToCaseHttpUtils &lt;br /&gt; Method: sendRequestGetBody &lt;br /&gt; Exception Message:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CalloutExceptionSubject</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Callout Exception Subject</shortDescription>
+        <value>Callout Exception</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Contact_Not_Found</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_CitrixCase_Contact_Not_Found</shortDescription>
+        <value>Contact not found associated with this Case.  Please associated a Contact with this Case by editing the Contact Name field and associating the Case with your preferred Contact.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_EmailSender</fullName>
+        <categories>G2A,CitrixCase</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2A Citrix Case Email Sender Display Name</shortDescription>
+        <value>Salesforce Support</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Email_Fail</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_CitrixCase_Email_Fail</shortDescription>
+        <value>An error has been encountered sending the email to the contact.  Please verify that a contact is assigned to this case, or refer to the error email for further details.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Email_Not_Found</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_CitrixCase_Email_Not_Found</shortDescription>
+        <value>Contact Email not found associated with Case.  Please go to the Contact associated with this Case in Salesforce and verify that an email address is populated.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_PortalUrl</fullName>
+        <categories>G2A,CitrixCase</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A CitrixCase Portal Url</shortDescription>
+        <value>The customer can start the GoToAssist session now by going to the portal:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Success</fullName>
+        <categories>G2A,CitrixCase</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A CitrixCase Success</shortDescription>
+        <value>An email has been sent to {0} &lt;{1}&gt; with the GoToAssist session information.</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Title</fullName>
+        <categories>G2A,CitrixCase</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A CitrixCase Title</shortDescription>
+        <value>Please Login to GoToAssist</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Title_2</fullName>
+        <categories>G2A,CitrixCase</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A CitrixCase Title 2</shortDescription>
+        <value>Session has been Created</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Title_3</fullName>
+        <categories>G2A,CitrixCase</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A CitrixCase Title 3</shortDescription>
+        <value>Email has been Sent</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Title_4</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_CitrixCase_Title_4</shortDescription>
+        <value>Contact Email Not Found</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Title_5</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_CitrixCase_Title_5</shortDescription>
+        <value>Associated Contact Not Found</value>
+    </labels>
+    <labels>
+        <fullName>G2A_CitrixCase_Title_SelectPortals</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_CitrixCase_Title_SelectPortals</shortDescription>
+        <value>Please select a GoToAssist Portal</value>
+    </labels>
+    <labels>
+        <fullName>G2A_EmailSubject</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A_EmailSubject</shortDescription>
+        <value>XML Parse Fault error in G2A Managed package &lt;br /&gt; Contact Citrix for further details &lt;br /&gt; Technical Details:&lt;br /&gt; Class: CitrixCase &lt;br /&gt; XML Error Code:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_EmailToContact</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Email To contact</shortDescription>
+        <value>Email to contact error in G2A Managed package &lt;br /&gt;Contact Citrix for further details &lt;br /&gt;&lt;br /&gt;Technical Details:&lt;br /&gt;Class: G2AToCaseCitrixCase.cls &lt;br /&gt;Method: EmailG2AUsingTemplate() &lt;br /&gt;Exception Details:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_Email_Service_Info_Message</fullName>
+        <categories>G2A Page Messages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Email Service Info Message</shortDescription>
+        <value>Inbound Email Service not found or not active, please have a System Administrator set this up in Salesforce</value>
+    </labels>
+    <labels>
+        <fullName>G2A_ExceptionMessage</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Exception Message</shortDescription>
+        <value>Exception Message:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_FaultLine</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Fault line error message</shortDescription>
+        <value>Fault Line</value>
+    </labels>
+    <labels>
+        <fullName>G2A_FaultMessage</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Fault Message</shortDescription>
+        <value>Fault Message</value>
+    </labels>
+    <labels>
+        <fullName>G2A_FaultTrace</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Fault Trace</shortDescription>
+        <value>Fault Trace</value>
+    </labels>
+    <labels>
+        <fullName>G2A_GoToAssistParsingErrorSubject</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Citrix GoToAssist Parsing Error</shortDescription>
+        <value>Citrix GoToAssist Parsing Error</value>
+    </labels>
+    <labels>
+        <fullName>G2A_LogonPArseFaultSubject</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A  Logon PArse Fault Subject</shortDescription>
+        <value>Logon Parse Fault</value>
+    </labels>
+    <labels>
+        <fullName>G2A_LogonParseFault</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Logon Parse Fault</shortDescription>
+        <value>XML Parse Fault error in G2A Managed package &lt;br /&gt; Contact Citrix for further details &lt;br /&gt; Technical Details:&lt;br /&gt; Class: G2AToCaseSessionInfoUpdate &lt;br /&gt; Method: parseLogonResponse() Fault Message: Failed to get connectionId.&lt;br/ &gt; Response:&lt;tt&gt;</value>
+    </labels>
+    <labels>
+        <fullName>G2A_ManagePackageError</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A ManagePackageError</shortDescription>
+        <value>G2A Managed Package Error</value>
+    </labels>
+    <labels>
+        <fullName>G2A_ManagedPAckageInboundEmailFaultSubject</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Managed PAckage InboundEmail Fault Subject</shortDescription>
+        <value>G2A Managed Package InboundEmail Fault Error</value>
+    </labels>
+    <labels>
+        <fullName>G2A_ManagedPackageInboundFault</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Inbound Email Parse Fault error in G2A Managed package</shortDescription>
+        <value>Inbound Email Parse Fault error in G2A Managed package &lt;br /&gt; Contact Citrix for further details &lt;br /&gt; Technical Details:&lt;br /&gt;Class: G2AToCaseUpdate &lt;br /&gt; Method: handleInboundEmail() &lt;br /&gt;</value>
+    </labels>
+    <labels>
+        <fullName>G2A_SoapMessage</fullName>
+        <categories>G2A Error Message</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>G2A Soap Message</shortDescription>
+        <value>SOAP Message:</value>
+    </labels>
+    <labels>
+        <fullName>G2A_emailTemplateSubject</fullName>
+        <categories>G2A,Email</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>G2A Contact Email Subject</shortDescription>
+        <value>GoToAssist Information For:</value>
+    </labels>
+    <labels>
+        <fullName>HtmlBody</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>HtmlBody</shortDescription>
+        <value>User Generated Error:</value>
+    </labels>
+    <labels>
+        <fullName>LogonValidResponse</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LogonValidResponse</shortDescription>
+        <value>logonResponse</value>
+    </labels>
+    <labels>
+        <fullName>PhoneModeValidResponse</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PhoneModeValidResponse</shortDescription>
+        <value>multiRef</value>
+    </labels>
+    <labels>
+        <fullName>SenderDisplayName</fullName>
+        <categories>Email</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SenderDisplayName</shortDescription>
+        <value>Salesforce Error</value>
+    </labels>
+    <labels>
+        <fullName>body</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>body</shortDescription>
+        <value>Body</value>
+    </labels>
+    <labels>
+        <fullName>id</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>id</shortDescription>
+        <value>id</value>
+    </labels>
+    <labels>
+        <fullName>impl</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>impl</shortDescription>
+        <value>impl</value>
+    </labels>
+    <labels>
+        <fullName>logon</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>logon</shortDescription>
+        <value>logon</value>
+    </labels>
+    <labels>
+        <fullName>password</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>password</shortDescription>
+        <value>password</value>
+    </labels>
+    <labels>
+        <fullName>serviceNS</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>serviceNS</shortDescription>
+        <value>G2A_Sessions</value>
+    </labels>
+    <labels>
+        <fullName>soap</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>soap</shortDescription>
+        <value>soap</value>
+    </labels>
+    <labels>
+        <fullName>soapenc_label</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>soapenc_label</shortDescription>
+        <value>soapenc</value>
+    </labels>
+    <labels>
+        <fullName>version</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>version</shortDescription>
+        <value>version</value>
+    </labels>
+    <labels>
+        <fullName>versionVal</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>versionVal</shortDescription>
+        <value>1</value>
+    </labels>
+    <labels>
+        <fullName>xsd</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>xsd</shortDescription>
+        <value>http://www.w3.org/2001/XMLSchema</value>
+    </labels>
+    <labels>
+        <fullName>xsd_label</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>xsd_label</shortDescription>
+        <value>xsd</value>
+    </labels>
+    <labels>
+        <fullName>xsd_long</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>xsd_long</shortDescription>
+        <value>xsd:long</value>
+    </labels>
+    <labels>
+        <fullName>xsd_string</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>xsd_string</shortDescription>
+        <value>xsd:string</value>
+    </labels>
+    <labels>
+        <fullName>xsi</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>xsi</shortDescription>
+        <value>http://www.w3.org/2001/XMLSchema-instance</value>
+    </labels>
+    <labels>
+        <fullName>xsi_label</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>xsi_label</shortDescription>
+        <value>xsi</value>
+    </labels>
+    <labels>
+        <fullName>xsi_type</fullName>
+        <categories>XML</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>xsi_type</shortDescription>
+        <value>xsi:type</value>
+    </labels>
+</CustomLabels>

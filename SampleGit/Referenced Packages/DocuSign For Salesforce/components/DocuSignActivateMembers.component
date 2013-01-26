@@ -1,0 +1,528 @@
+<apex:component allowDML="true" controller="dsfs.DocuSignActivateMembersController" >
+   <style>
+      .tableStyle {
+          border-collapse: collapse;
+          width: 100%;
+      }
+
+      .adminWelcomeDivStyle {
+          border: solid #444444 1px;
+          background-color: #000080;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+          width: 100%;
+          height: 32px;
+      }
+
+      .adminWelcomePageDivStyle {
+          border: solid #444444 1px;
+          background-color: #FFFFFF;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          width: 100%;
+          height: 300px;
+      }
+
+      .manageUsersHelpPageDivStyle {
+          border: solid #444444 1px;
+          background-color: #FFFFFF;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          width: 100%;
+          height: 310px;
+      }
+
+      .userCountDivStyle {
+          padding: 0px 0px 10px 0px;
+          text-align: left;
+          border-top: solid #CCCCCC 1px;
+      }
+
+      .addRemoveButtonDivStyle {
+          margin-top: 20px;
+          padding: 0px;
+          border-top: solid #CCCCCC 1px;
+          border-bottom: solid #FFFFFF 1px;
+          text-align: center;
+      }
+
+      .addRemoveButtonInnerDivStyle {
+          border-top:solid 1px #FFFFFF;
+          border-bottom:solid 1px #CCCCCC;
+          padding:8px 0px 8px 0px;
+      }
+
+      td.welcomeLabelStyle {
+          align: left;
+          vertical-align: middle;
+          font-size: large;
+          color: #FFFFFF;
+      }
+
+      td.minimizeStyle {
+          text-align: right;
+          vertical-align: middle;
+          font-size: large;
+          padding: 0px 0px 0px 5px;
+      }
+
+      .userListPageBlockStyle{
+          background-color: #F1F1F1;
+      }
+
+      .selectedFilterStyle{
+          background-color: #63D1F4;
+          font-weight: bold;
+      }
+
+   </style>
+
+   <apex:attribute name="userFilterAttribute" description="This is the id of the View filter to load" type="String" required="false" assignTo="{!userFilter}" />
+
+   <apex:outputPanel layout="block" styleClass="manageUsersHelpPageDivStyle" title="Manage DocuSign Users help" rendered="{!RenderManageUsersHelpPage}">
+      <iframe style="height:100%; width:100%;" frameborder="0" id="theIframe" name="theIframe" 
+               src="https://www.docusign.com/dfs/DFSManageUsersHelp.html" >
+      </iframe>
+   </apex:outputPanel>
+
+   <apex:outputPanel layout="block" title="Users" id="theUserListPanel" >
+      <table style="margin: 0px 0px 10px 0px;width:100%;background-color: #F1F1F1;">
+         <tr>
+            <td style="align:left;vertical-align:middle">
+               <apex:outputLabel style="padding-left: 15px;" value="View:"/>
+               &nbsp;
+               <apex:selectList value="{!filterId}" size="1" title="Select a filter to apply to the user list below.">
+                  <apex:actionSupport event="onchange" action="{!onFilterIdChange}" rerender="theUserListPanel" />
+                  <apex:selectOptions value="{!filterOptions}"/>
+                  </apex:selectList>
+               &nbsp;&nbsp;&nbsp;
+               <apex:outputLink value="/ui/list/FilterEditPage?ftype=s&retURL={!$CurrentPage.URL}" 
+                                id="newLink"
+                                title="Create a new user view">
+                  Create New View
+               </apex:outputLink>
+               &nbsp;&nbsp;|&nbsp;&nbsp;
+               <apex:outputLink value="/ui/list/FilterEditPage?id={!filterId}&retURL={!$CurrentPage.URL}" 
+                                id="editlink" 
+                                title="Edit the user view">
+                  Edit
+               </apex:outputLink>
+               &nbsp;&nbsp;|&nbsp;&nbsp;
+               <apex:commandlink action="{!ChooseColumns}"
+                                 title="Choose the fields to display in the user table below" >
+                  Choose fields
+               </apex:commandlink>
+            </td>
+         </tr>
+      </table>
+      <apex:pageBlock id="theChooseColumnsPageBlock" rendered="{!RenderChooseColumns}">
+         <div style="width: 800px;">
+         <table style="align:center">
+            <tr>
+               <td style="text-align:center">
+                  <b>Available Fields</b>
+                  <apex:selectlist value="{!selectedAvailableUserFields}" 
+                                   multiselect="true"
+                                   size="10"
+                                   title="Select fields to display in the user list below" >
+                     <apex:selectOptions value="{!availableUserFields}"/>
+                  </apex:selectlist>
+               </td>
+               <td style="height:100%" >
+                  <table style="height:100%;">
+                     <tr >
+                        <td style="vertical-align:bottom;text-align:center;">
+                           <apex:commandbutton action="{!addFieldToUserFieldsToDisplay}"
+                                               value="Add ==>"
+                                               title="Add the selected 'Available Fields' to the 'Selected Fields' list" />
+                        </td>
+                     </tr>
+                     <tr >
+                        <td style="vertical-align:top;text-align:center;">
+                           <apex:commandbutton action="{!removeFieldFromUserFieldsToDisplay}"
+                                               value="<== Remove"
+                                               title="Move the selected 'Selected Fields' back to the 'Available Fields' list" />
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+               <td style="text-align:center">
+                  <b>Selected Fields</b>
+                  <apex:selectlist value="{!selectedUserFieldsToDisplay}"
+                                   id="theSelectedUserFieldsToDisplay" 
+                                   multiselect="true"
+                                   size="10"
+                                   title="Fields that will be displayed in the user list below" >
+                     <apex:selectOptions value="{!availableUserFieldsToDisplay}"/>
+                  </apex:selectlist>
+               </td>
+               <td>
+                  <table style="height: 100%">
+                     <tr>
+                        <td style="height=50%;vertical-align:bottom;text-align:center;">
+                           <apex:commandbutton action="{!moveUserFieldUp}" 
+                                               id="MoveUpSelectedField"
+                                               value="Move Up" 
+                                               rerender="theSelectedUserFieldsToDisplay"
+                                               title="Move the selected field up one position"/>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="height=50%;vertical-align:top;text-align:center;">
+                           <apex:commandbutton action="{!moveUserFieldDown}" 
+                                               id="MoveDownSelectedField"
+                                               value="Move Down"  
+                                               rerender="theSelectedUserFieldsToDisplay"
+                                               title="Move the selected field down one position"/>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+         </table>
+         <div class="addRemoveButtonDivStyle">
+            <apex:commandbutton action="{!HandleChooseColumnsCancel}" 
+                                value="Cancel"
+                                title="Discard the changes to the 'Selected Fields' list" />
+               &nbsp;&nbsp;&nbsp;
+            <apex:commandbutton action="{!HandleChooseColumnsOK}" 
+                                value="OK"
+                                title="Save the changes to the 'Selected Fields' list" />
+         </div>
+         </div>
+      </apex:pageBlock>
+      <apex:pageBlock id="theUserListPageBlock" >
+         <div style="text-align:center;">
+         <apex:commandLink value="A"
+                           action="{!filterByA}"
+                           title="Display users with {!sortField} starting with A"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}"
+                           styleClass="{!IF(filterByCharacter=='a', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="B"
+                           action="{!filterByB}"
+                           title="Display users with {!sortField} starting with B"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='b', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="C"
+                           action="{!filterByC}"
+                           title="Display users with {!sortField} starting with C"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='c', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="D"
+                           action="{!filterByD}"
+                           title="Display users with {!sortField} starting with D"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='d', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="E"
+                           action="{!filterByE}"
+                           title="Display users with {!sortField} starting with E"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='e', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="F"
+                           action="{!filterByF}"
+                           title="Display users with {!sortField} starting with F"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='f', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="G"
+                           action="{!filterByG}"
+                           title="Display users with {!sortField} starting with G"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='g', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="H"
+                           action="{!filterByH}"
+                           title="Display users with {!sortField} starting with H"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='h', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="I"
+                           action="{!filterByI}"
+                           title="Display users with {!sortField} starting with I"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='i', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="J"
+                           action="{!filterByJ}"
+                           title="Display users with {!sortField} starting with J"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='j', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="K"
+                           action="{!filterByK}"
+                           title="Display users with {!sortField} starting with K"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='k', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="L"
+                           action="{!filterByL}"
+                           title="Display users with {!sortField} starting with L"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='l', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="M"
+                           action="{!filterByM}"
+                           title="Display users with {!sortField} starting with M"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='m', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="N"
+                           action="{!filterByN}"
+                           title="Display users with {!sortField} starting with N"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='n', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="O"
+                           action="{!filterByO}"
+                           title="Display users with {!sortField} starting with O"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='o', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="P"
+                           action="{!filterByP}"
+                           title="Display users with {!sortField} starting with P"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='p', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="Q"
+                           action="{!filterByQ}"
+                           title="Display users with {!sortField} starting with Q"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='q', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="R"
+                           action="{!filterByR}"
+                           title="Display users with {!sortField} starting with R"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='r', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="S"
+                           action="{!filterByS}"
+                           title="Display users with {!sortField} starting with S"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='s', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="T"
+                           action="{!filterByT}"
+                           title="Display users with {!sortField} starting with T"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='t', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="U"
+                           action="{!filterByU}"
+                           title="Display users with {!sortField} starting with U"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='u', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="V"
+                           action="{!filterByV}"
+                           title="Display users with {!sortField} starting with V"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='v', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="W"
+                           action="{!filterByW}"
+                           title="Display users with {!sortField} starting with W"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='w', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="X"
+                           action="{!filterByX}"
+                           title="Display users with {!sortField} starting with X"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='x', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="Y"
+                           action="{!filterByY}"
+                           title="Display users with {!sortField} starting with Y"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='y', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="Z"
+                           action="{!filterByZ}"
+                           title="Display users with {!sortField} starting with Z"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='z', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="Other"
+                           action="{!filterByOther}"
+                           title="Display users with {!sortField} that do not start with an alphabetic character"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='other', 'selectedFilterStyle','')}" />
+         <apex:outputText rendered="{!sortField != ''}" >&nbsp;&nbsp;|&nbsp;&nbsp;</apex:outputText> 
+         <apex:commandLink value="All"
+                           action="{!removeFilter}"
+                           title="Display all users"
+                           rerender="theUserListPanel"
+                           rendered="{!sortField != ''}" 
+                           styleClass="{!IF(filterByCharacter=='', 'selectedFilterStyle','')}" />
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <p />
+         </div>
+         <apex:pageBlockTable value="{!userList}"
+                              var="userWrapper"
+                              id="theUserList"
+                              style="padding: 10px 0px 10px 0px" >
+            <apex:column >
+               <apex:facet name="header">
+                  <apex:inputCheckbox title="Select all users on this page to be activated or deactivated in DocuSign" value="{!SelectAllUsers}">
+                     <apex:actionSupport event="onclick" action="{!SelectAll}"/>
+                  </apex:inputCheckbox>
+               </apex:facet>
+               <apex:inputCheckbox title="Select user to be added or removed to the DocuSign package" 
+                                   value="{!userWrapper.isSelected}" 
+                                   disabled="{!DisableUserCheckbox && userWrapper.isSelected==false}">
+                   <apex:actionsupport event="onchange" action="{!SelectUser}" rerender="activateCommandButtons,displayedUserSummary,theUserList" >
+                      <apex:param name="selectedUserId" value="{!userWrapper.theUser.Id}"/>
+                   </apex:actionsupport>
+               </apex:inputCheckbox>
+            </apex:column>
+            <apex:repeat value="{!userFieldsToDisplay}" var="colItem">
+               <apex:column >
+                  <apex:facet name="header">
+                     <apex:commandLink value="{!colItem.label}{!IF(sortField!=colItem.value, '', IF (sortOrder=='asc', '  ▲', '  ▼'))}" 
+                                       action="{!SortUsers}"
+                                       title="{!colItem.label} - {!IF(sortField!=colItem.value, 'click to sort ascending', IF (sortOrder=='asc', 'sorted ascending, click to sort descending', 'sorted descending, click to sort ascending'))}" 
+                                       rerender="theUserListPanel" >
+                        <apex:param name="sortField" value="{!colItem.value}" assignTo="{!sortField}" />
+                     </apex:commandLink>
+                  </apex:facet>
+                  <apex:outputField value="{!userWrapper.theUser[colItem.value]}" />
+               </apex:column>
+            </apex:repeat>
+         </apex:pageBlockTable>
+         <apex:outputPanel id="activateCommandButtons">
+
+            <div class="addRemoveButtonDivStyle" >
+               <div class="addRemoveButtonInnerDivStyle" >
+                        <apex:commandbutton action="{!activateDSUsers}"   
+                                            value="Add Users" 
+                                            title="{!activateButtonTitle}"
+                                            disabled="{!disableActivateButton}"
+                                            style="margin-right:20px;" />
+                        <apex:commandbutton action="{!activateAdminDSUsers}"   
+                                            value="Add Admin Users" 
+                                            title="{!activateAdminButtonTitle}"
+                                            disabled="{!disableActivateAdminButton}"
+                                            style="margin-right:20px;" />
+                        <apex:commandbutton action="{!deactivateUsers}" 
+                                            value="Remove Users" 
+                                            title="{!deactivateButtonTitle}"
+                                            disabled="{!disableDeactivateButton}"
+                                            style="margin-right:20px;" />
+                        <apex:commandbutton action="{!deactivateAndCloseUsers}"   
+                                            value="Remove and Close Users" 
+                                            title="{!deactivateAndCloseButtonTitle}"
+                                            disabled="{!disableDeactivateAndCloseButton}" />
+               </div>
+            </div>
+            <div style="margin-left:13px;margin-top:7px;color:#999">
+               <apex:outputText value="ADD USERS = Add the DocuSign package for the selected users" />
+               <br/>
+               <apex:outputText value="ADD ADMIN USERS = Add the DocuSign package for the selected users and make them administrators for the DocuSign account" />
+               <br/>
+               <apex:outputText value="REMOVE USERS = Remove the DocuSign package for the selected users" />"
+               <br />
+               <apex:outputText value="REMOVE AND CLOSE USERS = Remove the DocuSign package for the selected users and close their DocuSign accounts" />
+               <br />
+            </div>
+         </apex:outputPanel>
+      </apex:pageBlock>
+      <div class="userCountDivStyle" id="paginationDiv">
+         <table style="width:100%;height:100%;min-width:850px;">
+            <tr>
+               <td style="height:100%;text-align:left;width:40%;vertical-align:middle;">
+                  <apex:outputText value="{!viewingUsersString}" />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <apex:outputText value="{!selectedUsersString}" id="displayedUserSummary"/>
+               </td>
+               <td style="height:100%;text-align:center;width:17%;vertical-align:middle;">
+                  <apex:commandButton style="padding:0px;border:0px;vertical-align:middle;" 
+                                      action="{!FirstPage}" 
+                                      image="{!IF(showPreviousPage,$Resource.dsfs__AdminFirstIconOn,$Resource.dsfs__AdminFirstIcon)}"
+                                      disabled="{!showPreviousPage==false}"
+                                      title="Show the first page of users" />
+                  <apex:commandButton style="padding:0px;border:0px;vertical-align:middle;" 
+                                      action="{!PreviousPage}" 
+                                      image="{!IF(showPreviousPage,$Resource.dsfs__AdminPreviousIconOn,$Resource.dsfs__AdminPreviousIcon)}"
+                                      disabled="{!showPreviousPage==false}"
+                                      title="Show the previous page of users"/>
+                  <apex:commandButton style="padding:0px;border:0px;background:#FFFFFF;" 
+                                      action="{!PreviousPage}" 
+                                      disabled="{!showPreviousPage==false}"
+                                      title="Show the previous page of users"
+                                      value="Previous"/>
+                  &nbsp;&nbsp;
+                  <apex:commandButton style="padding:0px;border:0px;background:#FFFFFF;" 
+                                      action="{!NextPage}" 
+                                      disabled="{!showNextPage==false}"
+                                      title="Show the next page of users"
+                                      value="Next" />
+                  <apex:commandButton style="padding:0px;border:0px;vertical-align:middle;" 
+                                      action="{!NextPage}" 
+                                      image="{!IF(showNextPage,$Resource.dsfs__AdminNextIconOn,$Resource.dsfs__AdminNextIcon)}"
+                                      disabled="{!showNextPage==false}"
+                                      title="Show the next page of users" />
+                  <apex:commandButton style="padding:0px;border:0px;vertical-align:middle;" 
+                                      action="{!LastPage}" 
+                                      image="{!IF(showNextPage,$Resource.dsfs__AdminLastIconOn,$Resource.dsfs__AdminLastIcon)}"
+                                      disabled="{!showNextPage==false}"
+                                      title="Show the last page of users" />
+               </td>
+               <td style="height:100%;text-align:right;width:43%;vertical-align:middle;">
+                  <apex:outputText value="Users displayed per page"
+                                   style="padding-right:5px;"/>
+                  <apex:selectList value="{!selectedUsersPerPage}" 
+                                   size="1" 
+                                   multiselect="false" 
+                                   title="Choose the number of users to display per page"
+                                   id="usersPerPageList" >
+                     <apex:actionsupport event="onchange" rerender="theUserListPanel" />
+                     <apex:selectOptions value="{!usersPerPageList}"/>
+                  </apex:selectList>
+                  <apex:outputText value="Page" 
+                                   style="padding-left:10px;padding-right:5px;"/>
+                  <apex:inputText value="{!CurrentPage}" 
+                                  size="2">
+                     <apex:actionSupport event="onchange" rerender="theUserListPanel"/>
+                  </apex:inputText>
+                  <apex:outputText value="of {!NumberOfPages}"
+                                   style="padding-left:5px;"/>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </apex:outputPanel>
+</apex:component>

@@ -1,0 +1,41 @@
+<apex:component allowdml="true">
+
+<apex:attribute name="that" description="G2A4SF.G2AToCaseCitrixCase" type="G2A4SF.G2AToCaseCitrixCase" required="true"/>
+
+<div class="pageContent">
+</div>
+
+<div class="keyVisual"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/keyVisual_Login.jpg')}" width="206" height="173" />
+</div>
+
+<div class="contentArea">
+  <h1>{!$Label.G2AHelpAlertError_Header}</h1>
+  	<p>{!$Label.G2AHelpAlertError_Paragraph1}  </p>
+  <apex:outputpanel rendered="{!that.ErrorTwiceFlag}" >
+  	<!-- <apex:outputtext style="color: red;" value="You are still not logged into the GoToAssist. Please start the GotoAssist application on your computer and log on to your account, then press 'Continue'."/> -->
+  	<div class="errorLayer"> 
+    <p><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/iconError.jpg')}" alt="Error Icon" width="14" height="14" align="absmiddle" />&nbsp;&nbsp;{!$Label.G2AHelpAlertError_Paragraph2} </p>
+  </div>
+  	
+  </apex:outputpanel>
+  
+  <p>&nbsp;</p>
+  <apex:outputpanel rendered="{!!that.gotportalids}" >
+  <p><apex:commandlink action="{!that.submit2}" ><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_continue.jpg')}" alt="Continue" name="btn_continue" width="112" height="29" border="0" id="btn_continue" onmouseover="MM_swapImage('btn_continue','','{!URLFOR($Resource.G2AStylesAndImages,'images/btn_continue_over.jpg')}',1)" onmouseout="MM_swapImgRestore()" /></apex:commandlink></p>
+  </apex:outputpanel>
+  
+  <apex:outputpanel rendered="{!that.gotportalids}" >
+  <p><apex:commandlink action="{!that.finishlogin2}" ><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_continue.jpg')}" alt="Continue" name="btn_continue" width="112" height="29" border="0" id="btn_continue" onmouseover="MM_swapImage('btn_continue','','{!URLFOR($Resource.G2AStylesAndImages,'images/btn_continue_over.jpg')}',1)" onmouseout="MM_swapImgRestore()" /></apex:commandlink></p>
+  </apex:outputpanel> 
+  
+</div>
+
+<div class="footerText">
+{!$Label.G2AToCase_FooterText}
+</div>
+
+<div class="footerLogo">
+<a href="http://www.citrixonline.com" target="_blank"><img src="{!URLFOR($Resource.G2AStylesAndImages,'images/footerLogo.jpg')}" alt="Citrix Online logo" width="128" height="33" border="0" /></a>
+</div>
+
+</apex:component>

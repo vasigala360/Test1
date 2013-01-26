@@ -1,0 +1,25 @@
+<apex:component allowdml="true">
+
+<apex:attribute name="that" description="G2A4SF.G2AToCaseCitrixCase" type="G2A4SF.G2AToCaseCitrixCase" required="true"/>
+
+<div class="pageContent">
+</div>
+
+<div class="keyVisual"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/keyVisual_ExceededSessionCodes.jpg')}" width="206" height="173" />
+</div>
+
+<div class="contentArea">
+  <h1>{!$Label.G2AGeneralError_Heading}</h1>
+  <p><b>{!$Label.G2AGeneralError_Paragraph1}</b> {!that.errormsg} </p>
+  <p>{!$Label.G2AGeneralError_Paragraph2}</p>
+ 
+  <apex:outputpanel rendered="{!!that.gotportalids}" >
+  <p><apex:commandlink action="{!that.submit}" ><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_continue.jpg')}" alt="Continue" name="btn_continue" width="112" height="29" border="0" id="btn_continue" onmouseover="MM_swapImage('btn_continue','','{!URLFOR($Resource.G2AStylesAndImages,'images/btn_continue_over.jpg')}',1)" onmouseout="MM_swapImgRestore()" /></apex:commandlink></p>
+  </apex:outputpanel>
+  
+  <apex:outputpanel rendered="{!that.gotportalids}" >
+  <p><apex:commandlink action="{!that.finishlogin}" ><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_continue.jpg')}" alt="Continue" name="btn_continue" width="112" height="29" border="0" id="btn_continue" onmouseover="MM_swapImage('btn_continue','','{!URLFOR($Resource.G2AStylesAndImages,'images/btn_continue_over.jpg')}',1)" onmouseout="MM_swapImgRestore()" /></apex:commandlink></p>
+  </apex:outputpanel>
+</div>
+
+</apex:component>

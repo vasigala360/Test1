@@ -1,0 +1,26 @@
+<apex:component >
+	<div class="pageContent"></div>
+	
+		<div class="keyVisual"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/keyVisual_emailSent.jpg')}" width="206" height="173" /></div>
+		
+		<div class="contentArea">
+		
+		  <h1>{!$Label.G2ACaseEmailSent_Header}</h1>
+		  <p><br />
+		  		{!$Label.G2ACaseEmailSent_Paragraph1} <br/>
+		  		{!$Label.G2ACaseEmailSent_Paragraph2}
+		    <br /> <br/>
+		  </p>
+		  <p><a href="#"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/btn_closeWindow.jpg')}" alt="Close Window" name="closeWindow" width="108" height="29" border="0" align="absmiddle" id="closeWindow" onclick ="window.close();" onmouseover="MM_swapImage('closeWindow','','{!URLFOR($Resource.G2AStylesAndImages,'images/btn_closeWindow_over.jpg')}',1)" onmouseout="MM_swapImgRestore()" /></a></p> 
+		</div>
+		 
+		
+		<div class="footerText">
+			{!$Label.G2AToCase_FooterText}
+		</div>
+		
+		<div class="footerLogo">
+		<a href="http://www.citrixonline.com" target="_blank"><img src="{!URLFOR($Resource.G2AStylesAndImages, 'images/footerLogo.jpg')}" alt="Citrix Online logo" width="128" height="33" border="0" /></a>
+		</div>
+	
+</apex:component>

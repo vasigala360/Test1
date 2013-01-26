@@ -1,0 +1,100 @@
+<messaging:emailTemplate subject="{!$Label.g2a4sf__G2A_emailTemplateSubject} {!relatedTo.CaseNumber}" recipientType="Contact" relatedToType="Case">
+<messaging:HTMLEmailBody >
+<!--    <c:G2AToCaseEmailTemplate contactName="{!relatedTo.Contact.Name}" connectionUrl="{!relatedTo.Connection_Url__c}" sessioncode="{!relatedTo.Session_Code__c}"/> -->
+<style type="text/css">
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 11px;
+    padding-left: 0px;
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+}
+.Headline {
+    color: #FFF;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+.HeadlineBackground {
+    background-color: #1659A1;
+}
+.Content {
+    border: 2px solid #CCC;
+    padding: 20px;
+
+}
+.footertext {
+    text-align: center;
+}
+.footertext {
+    font-size: 9px;
+}
+</style>
+
+<!-- https://na3.salesforce.com/servlet/servlet.ImageServer?id=01550000000dohe&oid=00D50000000IimE -->
+<!-- https://na3.salesforce.com/servlet/servlet.ImageServer?id=01550000000dohZ&oid=00D50000000IimE -->
+<body>
+<!-- <p>
+<img src="{!gtaLogoUrl}" alt="GoToAssist Logo" height="51" width="164" /> </p>
+<table width="550" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="HeadlineBackground"><br />
+
+    <p class="Headline">Join a GoToAssist® Support Session!&nbsp;&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td class="Content"><strong>Dear {!ContactName}!</strong>
+    <p>Your Salesforce supporter has created a GoToAssist support session. Please click the link below to enter.</p>
+    <p><a href="{!ConnectionUrl}"><strong>{!ConnectionUrl}</strong></a></p>
+    <p>Regards,</p>
+    <p>Customer Support</p></td>
+  </tr>
+  <tr>
+    <td><p>
+         <img src="{!CitrixLogoUrl}" alt="Citrix Online Logo" width="124" height="30" align="right" />
+    <br />
+    
+    <span class="footerText">© 1997-2011 Citrix Online, LLC. All Rights Reserved. </span></p></td>
+  </tr>
+  <tr>
+    <td class="footertext"><br />
+      <br />
+      Citrix Online | 6500 Hollister Avenue | Goleta, CA 93117 <br />
+      <br />
+    GoToAssist, GoToMeeting and GoToMyPC are trademarks of Citrix Online, LLC and are registered in the United States Patent and Trademark Office. These and other marks may be registered or pending registration in the United States or other countries. <br /></td>
+  </tr>
+</table>
+<p>&nbsp;</p> -->
+<table width="550" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="HeadlineBackground"><br />
+ 
+    <p class="Headline">&nbsp;&nbsp;&nbsp;&nbsp;Join a  Support Session </p></td>
+  </tr>
+  <tr>
+    <td class="Content"><strong>Dear {!relatedTo.Contact.Name},</strong>
+    <p>Please click the link to join the session.</p>
+    <p><a href="{!relatedTo.Connection_Url__c}"><strong>{!relatedTo.Connection_Url__c}</strong></a></p>
+    <p>The connection code for  this session is: {!relatedTo.Session_Code__c}</p>
+    <p>&nbsp;</p>
+<p>Thank you.</p>
+<p>Your Support Representative</p></td>
+  </tr>
+  <tr>
+    <td><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td class="footertext"><br />
+      <br />
+      Citrix Online | 7414 Hollister Avenue | Goleta, CA 93117 <br />
+      <br />
+    GoToAssist, GoToMeeting and GoToMyPC are trademarks of Citrix Online, LLC and are registered in the United States Patent and Trademark Office. These and other marks may be registered or pending registration in the United States or other countries. <br /></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+</body>
+</messaging:HTMLEmailBody>
+</messaging:emailTemplate>

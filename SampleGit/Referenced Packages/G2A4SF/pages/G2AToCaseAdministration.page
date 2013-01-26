@@ -1,0 +1,23 @@
+<apex:page controller="G2A4SF.G2AToCaseAdministration">
+  <apex:form >
+    <apex:pageMessages id="messages" />
+      <table border="0" cellspacing="0" cellpadding="5">
+        <tr>
+          <td align="right"><strong><apex:outputLabel for="username" value="{!$Label.g2a4sf__G2A_Admin_Username}" /><br /></strong></td>
+          <td><apex:inputText id="username" value="{!username}" /><br /></td>
+        </tr>
+        <tr>
+          <td align="right"><strong><apex:outputLabel for="password" value="{!$Label.g2a4sf__G2A_Admin_Password}" /></strong></td>
+          <td><apex:inputText id="password" value="{!password}" /></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td align="right">
+            <apex:commandButton value="{!$Label.g2a4sf__G2A_Admin_Save}"
+              action="{!save}"
+              rerender="messages" />
+          </td>
+        </tr>
+      </table>
+    </apex:form>
+</apex:page>

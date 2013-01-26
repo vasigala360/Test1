@@ -1,0 +1,5 @@
+<apex:page standardcontroller="G2A4SF__G2A_Chat_Session__c" extensions="G2A4SF.G2AToCaseSessionInfoUpdate" sidebar="false" showHeader="false" tabStyle="G2A4SF__G2A_Chat_Session__c" action="{!submit}">
+<apex:form >  
+  <apex:inputHidden value="{!G2A4SF__G2A_Chat_Session__c.G2A4SF__SessionId__c}"/>
+</apex:form>
+</apex:page>
